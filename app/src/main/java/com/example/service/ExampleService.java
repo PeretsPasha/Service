@@ -14,6 +14,8 @@ import static com.example.service.App.CHANNEL_ID;
 
 public class ExampleService extends Service {
 
+    MediaPlayer mediaPlayer;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,7 +38,7 @@ public class ExampleService extends Service {
 
         startForeground(1, notification);
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.oil );
+        mediaPlayer = MediaPlayer.create(this, R.raw.oil );
         mediaPlayer.start();
 
         return START_NOT_STICKY;
@@ -45,6 +47,7 @@ public class ExampleService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mediaPlayer.stop();
     }
 
     @Nullable
